@@ -1,0 +1,7 @@
+{
+  "name": "manduca_app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
