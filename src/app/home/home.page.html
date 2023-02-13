@@ -1,18 +1,6 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-header [title]="title"></app-header>
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-slider></app-slider>
-  <app-scroller></app-scroller>
+  <app-slider [products]="this.productsProvider.getRecommended()"></app-slider>
+  <app-categories [categories]="this.productsProvider.getCategories()"></app-categories>
+  <app-scroller [products] = "this.productsProvider.getProducts()"></app-scroller>
 </ion-content>

@@ -8,6 +8,8 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { SliderComponent } from '../components/slider/slider.component';
 import { ScrollerComponent } from '../components/scroller/scroller.component';
 import { ScrollerItemComponent } from '../components/scroller-item/scroller-item.component';
+import { CategoriesComponent } from '../components/categories/categories.component';
+import { HeaderComponent } from '../components/header/header.component';
 
 
 @NgModule({
@@ -17,6 +19,11 @@ import { ScrollerItemComponent } from '../components/scroller-item/scroller-item
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage, SliderComponent, ScrollerComponent, ScrollerItemComponent]
+  declarations: [HomePage, 
+    SliderComponent, 
+    ScrollerComponent, 
+    ScrollerItemComponent, 
+    CategoriesComponent, 
+    HeaderComponent]
 })
 export class HomePageModule {}
