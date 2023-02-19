@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/Product';
 
+
 @Component({
   selector: 'app-scroller-item',
   templateUrl: './scroller-item.component.html',
@@ -14,6 +15,8 @@ export class ScrollerItemComponent implements OnInit {
   }
   
   ngOnInit() {
+
+
     console.log(this.product);
   }
 

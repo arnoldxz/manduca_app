@@ -6,7 +6,7 @@ import { Product } from 'src/app/models/Product';
   // templateUrl: `./slider.component.html`,
   template: `
     <ion-slides [pager]="true" class="slider">
-      <ion-slide *ngFor="let item of products">
+      <ion-slide *ngFor="let item of products" class="slide" style.background-image="url('{{item.image}}')">
           <div class = "box">
             <h1>{{item.name}}</h1>
             <p>{{item.description}}</p>
@@ -19,7 +19,9 @@ import { Product } from 'src/app/models/Product';
 export class SliderComponent {
 
   @Input() products: Product[] = [];
+
   
-  constructor() { }
+  constructor() { 
+  }
 
 }

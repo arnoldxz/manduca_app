@@ -16,7 +16,7 @@ import { ProductsProviderService } from '../api/products-provider.service';
 })
 export class HomePage {
 
-  title: string = '';
+  title: string = 'Restaurant';
   productsProvider: ProductsProviderService = {} as ProductsProviderService;
 
   constructor(productsProviderService: ProductsProviderService) {

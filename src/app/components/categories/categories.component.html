@@ -1,5 +1,9 @@
 <div class="container">
-  <ion-chip *ngFor="let item of categories">
+
+    <!--<ion-chip *ngFor="let item of categories">
     <ion-label>{{item}}</ion-label>
   </ion-chip>
+  -->
+
+  <ion-button class="categories" fill="clear" *ngFor="let item of categories" size="small" routerLink="{{item}}">{{item}}</ion-button>
 </div>
