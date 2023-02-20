@@ -1,6 +1,6 @@
 <div class = "box" *ngFor="let item of products" [ngStyle]="{'background-image': 'url({{item.image}})'}">
   <ion-content>
-    <ion-slides [pager]="true">
+    <ion-slides [pager]="true" class="size">
       <ion-slide>
             <h1>{{item.name}}</h1>
             <p>{{item.description}}</p>

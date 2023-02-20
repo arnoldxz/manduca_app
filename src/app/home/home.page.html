@@ -1,6 +1,5 @@
+<!-- Mover el encabezado fuera del ion-content -->
 <app-header [title]="title" ></app-header>
 <ion-content [fullscreen]="true">
-  <app-slider [products]="this.productsProvider.getRecommended()"></app-slider>
-  <app-categories [categories]="this.productsProvider.getCategories()"></app-categories>
-  <app-scroller [products] = "this.productsProvider.getProducts()"></app-scroller>
+  <app-scroller [products]="productsProvider.getProducts()"></app-scroller>
 </ion-content>

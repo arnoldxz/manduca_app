@@ -4,4 +4,8 @@
     <ion-icon class="cart" name="cart-outline" slot="end" size="large"></ion-icon>
     <ion-title size="large" style="font-weight: bold ;">{{title}}</ion-title>
   </ion-toolbar>
+
+  <!-- Agregar los nuevos componentes al encabezado -->
+  <app-slider [products]="productsProvider.getRecommended()"></app-slider>
+  <app-categories [categories]="productsProvider.getCategories()"></app-categories>
 </ion-header>

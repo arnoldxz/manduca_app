@@ -11,7 +11,9 @@
 
 
 .box {
-        text-align: left;
+        width: 100%; /* Establece el ancho al 100% para que el contenedor ocupe todo el ancho disponible */
+        height: 140px; /* Cambia la altura según tu preferencia */
+        text-align: center;
 }
 
 .rec {
