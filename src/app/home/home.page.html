@@ -1,6 +1,10 @@
 <app-header [title]="title" ></app-header>
 <ion-content [fullscreen]="true">
   <app-slider [products]="this.productsProvider.getRecommended()"></app-slider>
-  <app-categories [categories]="this.productsProvider.getCategories()"></app-categories>
-  <app-scroller [products] = "this.productsProvider.getProducts()"></app-scroller>
+  <app-categories 
+    [categories]="this.productsProvider.getCategories()"
+    (categorySelectedEvent)="onCategorySelectedEvent($event)"
+    (productSelectedEvent)="onProductSelectedEvent($event)"
+  ></app-categories>
+  <app-scroller [products]= "this.products"></app-scroller>
 </ion-content>

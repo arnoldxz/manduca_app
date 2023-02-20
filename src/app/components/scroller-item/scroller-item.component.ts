@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { Product } from 'src/app/models/Product';
 
 
@@ -10,14 +11,13 @@ import { Product } from 'src/app/models/Product';
 export class ScrollerItemComponent implements OnInit {
 
   @Input() product: Product = {} as Product;
-
   constructor() { 
   }
   
   ngOnInit() {
-
-
     console.log(this.product);
   }
+
+
 
 }

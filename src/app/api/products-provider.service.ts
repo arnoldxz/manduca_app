@@ -7,9 +7,9 @@ import { Product } from '../models/Product';
 export class ProductsProviderService {
 
   private readonly products: Product[] = [
-    { id: '1', name: 'Product 1', description: 'Description 1', price: 100, image: 'https://picsum.photos/200/300?random=1', category: 'Entrantes', isRecomended: false, isAvailable: true, isOnSale: false },
-    { id: '2', name: 'Product 2', description: 'Description 2', price: 200, image: 'https://picsum.photos/200/300?random=2', category: 'Entrantes', isRecomended: false, isAvailable: true, isOnSale: false },
-    { id: '3', name: 'Product 3', description: 'Description 3', price: 300, image: 'https://picsum.photos/200/300?random=3', category: 'Entrantes', isRecomended: false, isAvailable: true, isOnSale: false },
+    { id: '1', name: 'Entrante1', description: 'Description 1', price: 100, image: 'https://picsum.photos/200/300?random=1', category: 'Entrantes', isRecomended: false, isAvailable: true, isOnSale: false },
+    { id: '2', name: 'Entrante 2', description: 'Description 2', price: 200, image: 'https://picsum.photos/200/300?random=2', category: 'Entrantes', isRecomended: false, isAvailable: true, isOnSale: false },
+    { id: '3', name: 'Entrante 3', description: 'Description 3', price: 300, image: 'https://picsum.photos/200/300?random=3', category: 'Entrantes', isRecomended: false, isAvailable: true, isOnSale: false },
     { id: '4', name: 'Product 4', description: 'Description 4', price: 400, image: 'https://picsum.photos/200/300?random=4', category: 'Primeros', isRecomended: false, isAvailable: true, isOnSale: false },
     { id: '5', name: 'Product 5', description: 'Description 5', price: 500, image: 'https://picsum.photos/200/300?random=5', category: 'Primeros', isRecomended: false, isAvailable: true, isOnSale: false },
     { id: '6', name: 'Product 6', description: 'Description 6', price: 600, image: 'https://picsum.photos/200/300?random=6', category: 'Segundos', isRecomended: false, isAvailable: true, isOnSale: false },
@@ -26,6 +26,8 @@ export class ProductsProviderService {
   public getCategories = () => this.products.map(p => p.category).filter((value, index, self) => self.indexOf(value) === index);
 
   public getRecommended = () => this.products.filter((value, index, self) => value.isRecomended);
+
+  public getProductsByCategory = (category: string) => this.products.filter((value, index, self) => value.category === category);
 
   public getProducts = () => this.products;
 
