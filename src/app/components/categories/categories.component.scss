@@ -11,5 +11,8 @@
 
 .container::-webkit-scrollbar {
         background-color: transparent; /* Fondo transparente */
-      }
+}
       
+.active {
+        background-color: #cfcdcd;
+}

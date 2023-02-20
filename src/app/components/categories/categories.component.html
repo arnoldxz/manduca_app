@@ -1,3 +1,3 @@
 <div class="container">
-  <ion-button class="categories" fill="clear" *ngFor="let item of categories" size="small" routerLink="{{item}}">{{item}}</ion-button>
+  <ion-button class="categories" fill="clear" *ngFor="let item of categories" size="small" [ngClass]="{'active': activeButton === item}" (click)="buttonClicked(item)">{{item}}</ion-button>
 </div>

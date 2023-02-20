@@ -6,6 +6,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent implements OnInit {
+
+  activeButton!: string;
+
   items: string[] = [];
 
   @Input() categories: string[] = [];
@@ -13,4 +16,7 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit() { }
 
+  buttonClicked(category: string) {
+    this.activeButton = category;
+  }
 }
