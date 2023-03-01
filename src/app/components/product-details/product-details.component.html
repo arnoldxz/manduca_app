@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>{{product.name}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-modal id="example-modal">
+    <ng-template>
+      <div class="wrapper">
+        <h3>{{product.description}}</h3>
+        <h3>{{product.price}}</h3>
+      </div>
+    </ng-template>
+  </ion-modal>
+</ion-content>

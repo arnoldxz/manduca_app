@@ -10,6 +10,7 @@ import { ScrollerComponent } from '../components/scroller/scroller.component';
 import { ScrollerItemComponent } from '../components/scroller-item/scroller-item.component';
 import { CategoriesComponent } from '../components/categories/categories.component';
 import { HeaderComponent } from '../components/header/header.component';
+import { ProductDetailsComponent } from '../components/product-details/product-details.component';
 
 
 @NgModule({
@@ -17,13 +18,15 @@ import { HeaderComponent } from '../components/header/header.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
   ],
   declarations: [HomePage, 
     SliderComponent, 
     ScrollerComponent, 
     ScrollerItemComponent, 
     CategoriesComponent, 
-    HeaderComponent]
+    HeaderComponent,
+    ProductDetailsComponent
+  ]
 })
 export class HomePageModule {}

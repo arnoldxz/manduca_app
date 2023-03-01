@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { ProductsProviderService } from '../api/products-provider.service';
+import { ProductDetailsComponent } from '../components/product-details/product-details.component';
 import { Product } from '../models/Product';
 
 @Component({
@@ -21,7 +23,8 @@ export class HomePage implements OnInit {
     productsProvider: ProductsProviderService = {} as ProductsProviderService;
     products: Product[] = [];
 
-    constructor(productsProviderService: ProductsProviderService) {
+    constructor(productsProviderService: ProductsProviderService,
+        private modalController: ModalController) {
         this.productsProvider = productsProviderService;
     }
     ngOnInit(): void {
@@ -31,8 +34,14 @@ export class HomePage implements OnInit {
     onCategorySelectedEvent = (category: string) => 
         this.products = this.productsProvider.getProductsByCategory(category);
 
-    onProductSelectedEvent = () => {
-        
+    onProductSelectedEvent = async (product: Product) => {
+        const modal = await this.modalController.create({
+            component: ProductDetailsComponent,
+            componentProps: {
+                product: product
+            }
+        });
+        return await modal.present();
     };
 
 }

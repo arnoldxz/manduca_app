@@ -6,16 +6,15 @@ import { Product } from 'src/app/models/Product';
   templateUrl: './scroller.component.html',
   styleUrls: ['./scroller.component.scss'],
 })
-export class ScrollerComponent implements OnInit {
+export class ScrollerComponent {
 
   @Input() products: Product[] = [];
   @Output() productSelectedEvent = new EventEmitter<Product>();
-
   constructor() { }
 
-  ngOnInit() {}
-  
-  itemClick = (product: Product) => 
-    this.productSelectedEvent.emit(product)
+  itemClick = (product: Product) => {
+    console.log(`${product} clicked`);
+    this.productSelectedEvent.emit(product);
+  }
   
 }
