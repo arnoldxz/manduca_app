@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { IonModal, ModalController } from '@ionic/angular';
+import { OrderItem } from 'src/app/models/OrderItem';
 import { Product } from 'src/app/models/Product';
 
 @Component({
@@ -9,19 +11,27 @@ import { Product } from 'src/app/models/Product';
 export class ProductDetailsComponent{
 
   @Input() product: Product = {} as Product;
+  quantity: number = 0;
 
-  constructor() { }
+  constructor(private modalCtrl: ModalController) { }
 
   cancel = () => {
+    this.modalCtrl.dismiss({}, 'cancel');
     console.log('cancel');
   }
 
-  addToCart = () => {
-    console.log('add to cart');
+  confirm = () => {
+    const orderItem: OrderItem = {
+      product: this.product,
+      quantity: this.quantity
+    }
+    this.modalCtrl.dismiss(orderItem, 'confirm')
+    console.log('confirm');
   }
 
-  confirm = () => {
-    console.log('confirm');
+  onUpdateQuantityEvent = (quantity: number) => {
+    this.quantity = quantity;
+    console.log(`Quantity: ${this.quantity}`);
   }
 
 }

@@ -9,7 +9,10 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding">
+
+<app-quantity-selector (quantityChangeEvent)="onUpdateQuantityEvent($event)"></app-quantity-selector>
+
+<!-- <ion-content class="ion-padding">
   <ion-modal id="example-modal">
     <ng-template>
       <div class="wrapper">
@@ -18,4 +21,4 @@
       </div>
     </ng-template>
   </ion-modal>
-</ion-content>
+</ion-content> -->

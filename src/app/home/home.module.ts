@@ -11,6 +11,8 @@ import { ScrollerItemComponent } from '../components/scroller-item/scroller-item
 import { CategoriesComponent } from '../components/categories/categories.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { ProductDetailsComponent } from '../components/product-details/product-details.component';
+import { QuantitySelectorComponent } from '../components/quantity-selector/quantity-selector.component';
+import { CheckOutComponent } from '../components/check-out/check-out.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { ProductDetailsComponent } from '../components/product-details/product-d
     ScrollerItemComponent, 
     CategoriesComponent, 
     HeaderComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    QuantitySelectorComponent,
+    CheckOutComponent
   ]
 })
 export class HomePageModule {}

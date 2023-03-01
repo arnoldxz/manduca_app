@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { CheckoutService } from '../api/checkout/checkout.service';
 import { ProductsProviderService } from '../api/products-provider.service';
+import { CheckOutComponent } from '../components/check-out/check-out.component';
 import { ProductDetailsComponent } from '../components/product-details/product-details.component';
 import { Product } from '../models/Product';
+import { OrderHandlerService } from '../services/order-handler/order-handler.service';
 
 @Component({
     selector: 'app-home',
@@ -24,6 +27,8 @@ export class HomePage implements OnInit {
     products: Product[] = [];
 
     constructor(productsProviderService: ProductsProviderService,
+        private orderHandlerService: OrderHandlerService,
+        private checkOutService: CheckoutService,
         private modalController: ModalController) {
         this.productsProvider = productsProviderService;
     }
@@ -41,7 +46,31 @@ export class HomePage implements OnInit {
                 product: product
             }
         });
-        return await modal.present();
+        
+        await modal.present();
+        modal.onDidDismiss().then((data: any) => {
+            console.log(`${data}`);
+            if (data.role === 'confirm') {
+                console.log('Product confirmed');
+                this.orderHandlerService.addOrderItem(data.data.product);
+            }
+        });
     };
+
+    checkout = async () => {
+        const modal = await this.modalController.create({
+            component: CheckOutComponent,
+            componentProps: {
+                order: this.orderHandlerService.order
+            }
+        });
+        await modal.present();
+        modal.onDidDismiss().then((data: any) => {
+            if(data.role === 'confirm') {
+                // this.checkOutService.checkout(this.orderHandlerService.order);
+                console.log('Order confirmed');
+            }
+        })
+    }
 
 }
