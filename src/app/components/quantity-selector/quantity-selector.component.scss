@@ -1,4 +1,15 @@
 .content {
     display: flex;
     flex-direction: row;
+
+    ion-icon {
+        font-size: 1.5rem;
+      }
+    
+      p {
+        margin: 0.8rem;
+        font-size: 1.5rem;
+      }
+    
 }
+
