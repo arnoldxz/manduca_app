@@ -1,11 +1,35 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="cancel()">Cancel</ion-button>
+      <ion-button (click)="cancel()" color="danger">Cancel</ion-button>
     </ion-buttons>
     <ion-title>Checkout</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+      <ion-button (click)="confirm()" color="primary" [strong]="true">Payment</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<ion-content>
+  <ion-list *ngIf="orderItems.length > 0">
+    <ion-item-sliding *ngFor="let item of orderItems">
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-img [src]="item.product.image"></ion-img>
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ item.product.name }}</h2>
+          <p>Quantity: {{ item.quantity }}</p>
+          <p class="price">{{item.quantity * item.product.price}}€</p>
+        </ion-label> 
+        <ion-icon slot="end" color="danger" name="trash" (click)="removeOrderItem(item)"></ion-icon>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+  <div class="no-products" *ngIf="orderItems.length == 0"><p>No products</p></div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title class="price">Total Price: {{ totalPrice }}€</ion-title>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,22 @@
+ion-toolbar {
+    ion-title {
+      text-align: center;
+    }
+  }
+
+  ion-icon[name="trash"] {
+    color: red;
+  }
+  
+  .no-products {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .price {
+    font-weight: bold;
+    color: green;
+  }
+  

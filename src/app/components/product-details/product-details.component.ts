@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IonModal, ModalController } from '@ionic/angular';
 import { OrderItem } from 'src/app/models/OrderItem';
 import { Product } from 'src/app/models/Product';
+import { OrderHandlerService } from 'src/app/services/order-handler/order-handler.service';
 
 @Component({
   selector: 'app-product-details',
@@ -13,7 +14,7 @@ export class ProductDetailsComponent{
   @Input() product: Product = {} as Product;
   quantity: number = 0;
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController, private orderHandlerService: OrderHandlerService) { }
 
   cancel = () => {
     this.modalCtrl.dismiss({}, 'cancel');
@@ -25,6 +26,7 @@ export class ProductDetailsComponent{
       product: this.product,
       quantity: this.quantity
     }
+    this.orderHandlerService.addOrderItem(orderItem);
     this.modalCtrl.dismiss(orderItem, 'confirm')
     console.log('confirm');
   }

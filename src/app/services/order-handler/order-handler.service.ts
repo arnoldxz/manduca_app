@@ -7,13 +7,18 @@ import { Product } from 'src/app/models/Product';
 })
 export class OrderHandlerService {
 
-  order: Order = {} as Order;
+  order: Order = {
+    id: '',
+    order: [],
+  }
 
   constructor() { }
 
   addOrderItem = (orderItem: OrderItem) => {
     console.log(`Order item added: ${orderItem.product.name} x ${orderItem.quantity}`);
-    this.order.order.push(orderItem);
+    if (orderItem.quantity > 0) {
+      this.order.order.push(orderItem);
+    }
   }
 
   removeOrderItem = (orderItem: OrderItem) => {

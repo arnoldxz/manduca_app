@@ -27,7 +27,7 @@ export class HomePage implements OnInit {
     products: Product[] = [];
 
     constructor(productsProviderService: ProductsProviderService,
-        private orderHandlerService: OrderHandlerService,
+        public orderHandlerService: OrderHandlerService,
         private checkOutService: CheckoutService,
         private modalController: ModalController) {
         this.productsProvider = productsProviderService;

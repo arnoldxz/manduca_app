@@ -8,5 +8,4 @@ export interface OrderItem {
 export interface Order {
     id: string;
     order: OrderItem[];
-    date: Date;
 }
