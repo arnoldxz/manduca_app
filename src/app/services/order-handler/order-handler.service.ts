@@ -16,8 +16,15 @@ export class OrderHandlerService {
 
   addOrderItem = (orderItem: OrderItem) => {
     console.log(`Order item added: ${orderItem.product.name} x ${orderItem.quantity}`);
-    if (orderItem.quantity > 0) {
-      this.order.order.push(orderItem);
+    let existingItem = this.order.order.find(item => item.product.id === orderItem.product.id);
+    if (existingItem) {
+      existingItem.quantity += orderItem.quantity;
+      existingItem.itemTotalPrice += existingItem.product.price * orderItem.quantity;
+    } else {
+      orderItem.itemTotalPrice = orderItem.product.price * orderItem.quantity;
+      if (orderItem.quantity > 0) {
+        this.order.order.push(orderItem);
+      }
     }
   }
 
@@ -26,3 +33,4 @@ export class OrderHandlerService {
     this.order.order = this.order.order.filter(item => item !== orderItem);
   }
 }
+

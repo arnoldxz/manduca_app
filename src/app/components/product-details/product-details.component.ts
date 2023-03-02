@@ -24,7 +24,8 @@ export class ProductDetailsComponent{
   confirm = () => {
     const orderItem: OrderItem = {
       product: this.product,
-      quantity: this.quantity
+      quantity: this.quantity,
+      itemTotalPrice: this.product.price * this.quantity
     }
     this.orderHandlerService.addOrderItem(orderItem);
     this.modalCtrl.dismiss(orderItem, 'confirm')
