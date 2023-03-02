@@ -22,7 +22,7 @@
           <p>Quantity: {{ item.quantity }}</p>
           <p class="price">{{item.quantity * item.product.price}}€</p>
         </ion-label> 
-        <ion-icon slot="end" color="danger" name="trash" (click)="removeOrderItem(item)"></ion-icon>
+        <ion-icon slot="end" color="danger" name="trash" (click)="removeOrderItem(item, item.quantity > 1)"></ion-icon>
       </ion-item>
     </ion-item-sliding>
   </ion-list>
