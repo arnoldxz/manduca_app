@@ -22,12 +22,14 @@ ion-title {
     }
     
     .product-image {
-      position: relative;
+      position: absolute;
+      top: 5%;
+      height: 100%;
       width: 100%;
-      max-width: 70%;
+      max-height: 50%;
+      max-width: 50%;
       margin: 1rem auto;
       overflow: hidden;
-      padding-top: 100%;
       border-radius: 20px; /* Añade puntas curvadas */
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Agrega un borde con sombra */
     }
@@ -43,6 +45,8 @@ ion-title {
     }
     
     .product-description {
+      position: absolute;
+      bottom: 25%;
       max-width: 90%;
       text-align: justify;
       margin-bottom: 1rem;
@@ -60,7 +64,8 @@ ion-title {
   }
   
   app-quantity-selector {
-    display: block;
+    position: absolute;
+    bottom: 5%;
     margin: 1rem auto;
     text-align: center;
   }
