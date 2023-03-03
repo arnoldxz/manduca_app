@@ -27,7 +27,9 @@ ion-title {
       max-width: 70%;
       margin: 1rem auto;
       overflow: hidden;
-      padding-top: 100%; 
+      padding-top: 100%;
+      border-radius: 20px; /* Añade puntas curvadas */
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Agrega un borde con sombra */
     }
     
     .product-image ion-img {
@@ -37,6 +39,7 @@ ion-title {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 20px; /* Aplica puntas curvadas a la imagen */
     }
     
     .product-description {

@@ -55,9 +55,9 @@ export class CheckOutComponent implements OnInit {
           }, {
             text: 'Remove all',
             handler: () => {
-              this.orderHandlerService.removeAllItems();
+              this.orderHandlerService.removeAllItems(item);
+            }
           }
-        }
         ]
       });
   
@@ -66,6 +66,7 @@ export class CheckOutComponent implements OnInit {
       this.orderHandlerService.removeOrderItem(item);
     }
   }
+  
   
   
   

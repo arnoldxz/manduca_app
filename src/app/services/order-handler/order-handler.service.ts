@@ -33,9 +33,11 @@ export class OrderHandlerService {
     this.order.order = this.order.order.filter(item => item !== orderItem);
   }
 
-  removeAllItems() {
-    this.order.order = [];
+  removeAllItems(item: OrderItem) {
+    this.order.order = this.order.order.filter((x: OrderItem) => x.product.id !== item.product.id);
   }
+  
+  
   
 }
 
