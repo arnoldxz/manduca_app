@@ -32,5 +32,10 @@ export class OrderHandlerService {
     console.log(`Order item removed: ${orderItem.product.name}`);
     this.order.order = this.order.order.filter(item => item !== orderItem);
   }
+
+  removeAllItems() {
+    this.order.order = [];
+  }
+  
 }
 

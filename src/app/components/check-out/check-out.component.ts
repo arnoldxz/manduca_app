@@ -52,7 +52,12 @@ export class CheckOutComponent implements OnInit {
                 this.orderHandlerService.removeOrderItem(item);
               }
             }
+          }, {
+            text: 'Remove all',
+            handler: () => {
+              this.orderHandlerService.removeAllItems();
           }
+        }
         ]
       });
   
