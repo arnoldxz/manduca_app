@@ -7,8 +7,12 @@ img {
 }
 
 .thumb {
-    width: 150px;
-    height: 150px;
+    margin: 5%;
+    margin-left: 0%;
+    width: 10rem;
+    height: 10rem;
+    
+    
 }
 
 .price {
@@ -17,5 +21,12 @@ img {
     color: green;
     margin-top: 20%;
 }
+
+ion-item {
+    
+    
+    width: 125%
+}
+
 
 
