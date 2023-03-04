@@ -22,48 +22,27 @@ export class CheckOutComponent implements OnInit {
     this.orderHandlerService.order.totalPrice
   }
 
-  async removeOrderItem(item: IItem, showAlert: boolean) {
-    // if (showAlert && item.quantity > 1) {
-    //   const alert = await this.alertController.create({
-    //     header: `Remove ${item.product.name}`,
-    //     message: `How many ${item.product.name} do you want to remove?`,
-    //     inputs: [
-    //       {
-    //         name: 'quantity',
-    //         type: 'number',
-    //         min: 1,
-    //         max: item.quantity,
-    //         value: 1
-    //       }
-    //     ],
-    //     buttons: [
-    //       {
-    //         text: 'Cancel',
-    //         role: 'cancel'
-    //       },
-    //       {
-    //         text: 'Remove',
-    //         handler: (data) => {
-    //           if (data.quantity < item.quantity) {
-    //             item.quantity -= data.quantity;
-    //           } else {
-    //             this.orderHandlerService.removeOrderItem(item);
-    //           }
-    //         }
-    //       }, {
-    //         text: 'Remove all',
-    //         handler: () => {
-    //           this.orderHandlerService.removeAllItems(item);
-    //         }
-    //       }
-    //     ]
-    //   });
+  async removeOrderItem(item: IItem) {
+    const alert = await this.alertController.create({
+      message: `Are you sure you want to remove this item from your cart?`,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Remove',
+          handler: () => {
+            this.orderHandlerService.removeOrderItem(item);
+            this.items = this.orderHandlerService.getItems(); // update the items array
+          }
+        }
+      ]
+    });
   
-    //   await alert.present();
-    // } else {
-    //   this.orderHandlerService.removeOrderItem(item);
-    // }
+    await alert.present();
   }
+  
 
   cancel = () => {
     this.modalCtrl.dismiss({}, 'cancel');
