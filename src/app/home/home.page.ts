@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { CheckoutService } from '../api/checkout/checkout.service';
 import { ProductsProviderService } from '../api/products-provider.service';
 import { CheckOutComponent } from '../components/check-out/check-out.component';
-import { ProductDetailsComponent } from '../components/product-details/product-details.component';
+import { ItemDetailsComponent } from '../components/item-details/item-details.component';
 import { Product } from '../models/Product';
 import { OrderHandlerService } from '../services/order-handler/order-handler.service';
 
@@ -40,29 +40,26 @@ export class HomePage implements OnInit {
         this.products = this.productsProvider.getProductsByCategory(category);
 
     onProductSelectedEvent = async (product: Product) => {
+        const item = this.orderHandlerService.getOrCreateOrderItem(product);
         const modal = await this.modalController.create({
-            component: ProductDetailsComponent,
-            componentProps: {
-                product: product
-            }
+            component: ItemDetailsComponent,
+            componentProps: { item: item }
         });
         
         await modal.present();
-        modal.onDidDismiss().then((data: any) => {
-            console.log(`${data}`);
-            if (data.role === 'confirm') {
-                console.log('Product confirmed');
-                this.orderHandlerService.addOrderItem(data.data.product);
-            }
+        modal.onDidDismiss().then(data => {
+            (data.role === 'confirm' && this.orderHandlerService.addOrUpdateItem(data.data)) 
+            || (data.role === 'cancel' && this.orderHandlerService.removeOrderItem(data.data))
+            ||(item.quantity === 0) && this.orderHandlerService.removeOrderItem(data.data);
         });
     };
 
-    checkout = async () => {
+    onCheckout = async () => {
+        // console.log('Order: ', this.orderHandlerService.order);
+        
         const modal = await this.modalController.create({
             component: CheckOutComponent,
-            componentProps: {
-                order: this.orderHandlerService.order
-            }
+            componentProps: { orderHandlerService: this.orderHandlerService }
         });
         await modal.present();
         modal.onDidDismiss().then((data: any) => {
@@ -70,7 +67,7 @@ export class HomePage implements OnInit {
                 // this.checkOutService.checkout(this.orderHandlerService.order);
                 console.log('Order confirmed');
             }
-        })
+        });
     }
 
 }

@@ -10,9 +10,11 @@ import { ScrollerComponent } from '../components/scroller/scroller.component';
 import { ScrollerItemComponent } from '../components/scroller-item/scroller-item.component';
 import { CategoriesComponent } from '../components/categories/categories.component';
 import { HeaderComponent } from '../components/header/header.component';
-import { ProductDetailsComponent } from '../components/product-details/product-details.component';
 import { QuantitySelectorComponent } from '../components/quantity-selector/quantity-selector.component';
 import { CheckOutComponent } from '../components/check-out/check-out.component';
+import { ItemDetailsComponent } from '../components/item-details/item-details.component';
+import { CheckOutButtonComponent } from '../components/check-out-button/check-out-button.component';
+import { CheckOutListComponent } from '../components/check-out-list/check-out-list.component';
 
 
 @NgModule({
@@ -28,9 +30,11 @@ import { CheckOutComponent } from '../components/check-out/check-out.component';
     ScrollerItemComponent, 
     CategoriesComponent, 
     HeaderComponent,
-    ProductDetailsComponent,
+    ItemDetailsComponent,
     QuantitySelectorComponent,
-    CheckOutComponent
+    CheckOutComponent,
+    CheckOutButtonComponent,
+    CheckOutListComponent
   ]
 })
 export class HomePageModule {}

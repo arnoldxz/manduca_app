@@ -1,26 +1,32 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-quantity-selector',
   templateUrl: './quantity-selector.component.html',
+  // template: `
+  //   <div class="content">
+  //     <ion-fab-button (click)="subtraction()">
+  //       <ion-icon name="remove-outline"></ion-icon>
+  //     </ion-fab-button>
+  //     <p>{{quantity}}</p>
+  //     <ion-fab-button (click)="addition()">
+  //       <ion-icon name="add"></ion-icon>
+  //     </ion-fab-button>
+  //   </div>`,
   styleUrls: ['./quantity-selector.component.scss'],
 })
 export class QuantitySelectorComponent {
-  quantity: number = 0;
-
-  @Output() quantityChangeEvent = new EventEmitter<number>();
+  
+  @Input() quantity!: number;
+  @Output() quantityChange = new EventEmitter<number>();
   constructor() { }
 
-  addition = () => {
-    this.quantity++;
-    this.quantityChangeEvent.emit(this.quantity);
-  }
+  addition = () => this.editQuantity(+1);
+  subtraction = () => this.quantity > 0 ? this.editQuantity(-1) : {};
 
-  subtraction = () => {
-    if (this.quantity > 0) {
-      this.quantity--;
-      this.quantityChangeEvent.emit(this.quantity);
-    }
+  editQuantity = (quantity: number) => {
+    this.quantity = this.quantity + quantity;
+    this.quantityChange.emit(this.quantity);
   }
 
 }

@@ -1,43 +1,51 @@
 import { Injectable } from '@angular/core';
-import { Order, OrderItem } from 'src/app/models/OrderItem';
+import { IOrder, IItem, Order, Item } from 'src/app/models/Order';
 import { Product } from 'src/app/models/Product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderHandlerService {
-
-  order: Order = {
-    id: '',
-    order: [],
-  }
-
-  constructor() { }
-
-  addOrderItem = (orderItem: OrderItem) => {
-    console.log(`Order item added: ${orderItem.product.name} x ${orderItem.quantity}`);
-    let existingItem = this.order.order.find(item => item.product.id === orderItem.product.id);
-    if (existingItem) {
-      existingItem.quantity += orderItem.quantity;
-      existingItem.itemTotalPrice += existingItem.product.price * orderItem.quantity;
-    } else {
-      orderItem.itemTotalPrice = orderItem.product.price * orderItem.quantity;
-      if (orderItem.quantity > 0) {
-        this.order.order.push(orderItem);
-      }
+    
+    public order: Order = new Order([]);
+    
+    constructor() { }
+    
+    addOrUpdateItem = (item: Item) => {
+        console.log("addOrUpdateItem", item);
+        let existingItem = this.order.items.find(x => item.product === x.product);
+        if (!existingItem) {
+            this.order.items.push(item);
+            return;
+        }
+        existingItem.quantity = item.quantity;
     }
-  }
 
-  removeOrderItem = (orderItem: OrderItem) => {
-    console.log(`Order item removed: ${orderItem.product.name}`);
-    this.order.order = this.order.order.filter(item => item !== orderItem);
-  }
+    removeOrderItem = (orderItem: IItem) => {
+        console.log("removeOrderItem", orderItem);
+        this.order.items = this.order.items.filter(x => x !== orderItem);
+    }
 
-  removeAllItems(item: OrderItem) {
-    this.order.order = this.order.order.filter((x: OrderItem) => x.product.id !== item.product.id);
-  }
+    getOrderItemFromProduct = (product: Product): Item | null => 
+        this.order.items.find(item => item.product === product) || null;  
   
-  
-  
+    getOrCreateOrderItem = (product: Product): Item => {
+        let orderItem = this.getOrderItemFromProduct(product);
+        if (!orderItem) {
+            orderItem = new Item(product, 1);
+            this.order.items.push(orderItem);
+            console.log("this.order.items");
+            console.log(this.order.items);
+            return orderItem;
+        }
+        return orderItem;        
+    }
+
+    getItems = (): Item[] => this.order.items;
+
+    getItemsLength = (): number => this.order.items.length || 0;
+
+    getTotalProductQuantity = (): number => this.order.totalQuantity;
+    
 }
 

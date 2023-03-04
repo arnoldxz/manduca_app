@@ -1,0 +1,33 @@
+<!-- <ion-list *ngIf="items.length > 0">
+  <ion-item-sliding *ngFor="let item of items">
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-img [src]="item.product.image"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ item.product.name }}</h2>
+        <p>Quantity: {{ item.quantity }}</p>
+        <p class="price">{{item.quantity * item.product.price}}€</p>
+      </ion-label> 
+    </ion-item>
+  </ion-item-sliding>
+</ion-list> -->
+
+<ion-content>
+  <ion-list *ngIf="items.length > 0">
+    <ion-item-sliding *ngFor="let item of items">
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-img [src]="item.product.image"></ion-img>
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ item.product.name }}</h2>
+          <p>Quantity: {{ item.quantity }}</p>
+          <p class="price">{{item.quantity * item.product.price}}€</p>
+        </ion-label> 
+        <!-- <ion-icon slot="end" color="danger" name="trash" (click)="removeOrderItem(item, item.quantity > 1)"></ion-icon> -->
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+  <div class="no-products" *ngIf="items.length === 0"><p>No products</p></div>
+</ion-content>
