@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ProductsProviderService } from 'src/app/api/products-provider.service';
+import { ProductsProviderService } from 'src/app/api/products/products-provider.service';
 
 @Component({
   selector: 'app-header',
