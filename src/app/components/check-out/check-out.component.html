@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="cancel()" color="danger">Cancel</ion-button>
+      <ion-button (click)="cancel()" color="danger">BACK<ion-icon slot="start" name="arrow-back-outline"></ion-icon></ion-button>
     </ion-buttons>
     <ion-title>Checkout</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="confirm()" color="primary" [strong]="true">Payment</ion-button>
+      <ion-button (click)="confirm()" color="primary" [strong]="true">PAY <ion-icon slot="end" name="card-outline"></ion-icon></ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

@@ -1,3 +1,16 @@
+@import "../../../theme/fonts.scss";
+
+ion-header {
+  
+  ion-title {
+    font-family: $primary-font;
+  }
+
+  ion-button {
+    font-family: $primary-font;
+  }
+}
+
 ion-toolbar {
     ion-title {
       text-align: center;
@@ -9,6 +22,7 @@ ion-toolbar {
   }
   
   .no-products {
+    font-family: $primary-font;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,6 +30,7 @@ ion-toolbar {
   }
   
   .price {
+    font-family: $primary-font;
     font-weight: bold;
     color: green;
   }

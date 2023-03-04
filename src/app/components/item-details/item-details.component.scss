@@ -1,15 +1,20 @@
+@import "../../../theme/fonts.scss";
+
 ion-title {
   &.ion-text-center {
+    font-family: $primary-font;
     text-align: center;
   }
 }
 
-ion-button.add-cart {
-  font-size: 0.7rem;
-
+ion-button{
+  font-family: $primary-font;
 }
 
+
+
 ion-content {
+  font-family: $primary-font;
   overflow: hidden;
   // .overflow {
   // }
@@ -42,12 +47,18 @@ ion-content {
   }
 
   .product-description {
+    color: #636363;
     position: absolute;
     bottom: 35%;
     max-width: 90%;
     text-align: justify;
     margin-bottom: 1rem;
+    font-size: small;
   }
+
+  .cancel {
+    font-family: $primary-font;
+}
 
   app-quantity-selector {
     display: block;

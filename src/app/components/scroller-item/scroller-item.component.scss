@@ -6,14 +6,14 @@ img {
     margin-left: 0%;
 }
 
-.thumb {
-    margin: 3%;
-    margin-left: 0%;
+ion-thumbnail.thumb {
     width: 11rem;
     height: 10rem;
-    
-    
-}
+    margin-left: 0%;
+    margin-right: 0.3rem; /* Agrega un margen a la derecha */
+    margin-bottom: 1rem; /* Agrega un margen inferior */
+  }
+  
 
 h2{
     font-family: "fredo";
@@ -40,8 +40,14 @@ ion-item {
     width: 110%;
 }
 
+ion-item:focus {
+    background-color: yellow;
+  }
+  
+
 ion-label {
     margin-left: 5%;
+    
 }
 
 

@@ -1,11 +1,17 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button color="danger" (click)="cancel()">Cancel</ion-button>
+      <ion-button class="cancel" color="danger" (click)="cancel()" slot="start">
+        BACK
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title class="ion-text-center">{{item.product.name}}</ion-title>
+    <ion-title class="ion-text-center text center">{{item.product.name}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button class="add-cart" color="primary" (click)="confirm()" [strong]="true">Add to cart</ion-button>
+      <ion-button class="add-cart" color="primary" (click)="confirm()" [strong]="true" slot="end">
+        ADD
+        <ion-icon slot="end" name="cart"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
