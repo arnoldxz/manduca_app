@@ -70,3 +70,6 @@ Thumbs.db
 package.json
 package-lock.json
 package-lock.json
+*.sqlite
+package-lock.json
+package-lock.json
