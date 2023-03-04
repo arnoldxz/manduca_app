@@ -12,13 +12,8 @@
     (productSelectedEvent)="onProductSelectedEvent($event)"
   ></app-scroller>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="onCheckout()">
-        <ion-icon name="cart"></ion-icon>
-        <ion-badge>{{this.orderHandlerService.getTotalProductQuantity()}}</ion-badge>
-    </ion-fab-button>
-  </ion-fab>
-  <!-- <app-check-out-button
-    (onClickEvent)="onCheckout()"
-  ></app-check-out-button> -->
+  <app-check-out-button
+  [badgeValue]="this.orderHandlerService.getTotalProductQuantity()"
+  (onClickEvent)="onCheckout()"
+></app-check-out-button>
 </ion-content>
