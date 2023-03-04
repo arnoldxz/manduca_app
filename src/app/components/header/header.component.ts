@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ProductsProviderService } from 'src/app/api/products-provider.service';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() title: string = 'Default Title';
-  constructor() { }
+  public productsProvider: ProductsProviderService;
+
+  @Input() title: string = 'Title';
+  
+  constructor(productsProvider: ProductsProviderService) {
+    this.productsProvider = productsProvider;
+  }
 
   ngOnInit() {}
 

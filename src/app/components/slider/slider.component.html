@@ -1,8 +1,10 @@
-<ion-slides [pager]="true" class="slider">
-  <ion-slide *ngFor="let item of products">
-      <div class = "box">
-        <h1>{{item.name}}</h1>
-        <p>{{item.description}}</p>
-      </div>
-  </ion-slide>
-  </ion-slides>
+<div class = "box" *ngFor="let item of products" [ngStyle]="{'background-image': 'url({{item.image}})'}">
+  <ion-content>
+    <ion-slides [pager]="true" class="size">
+      <ion-slide>
+            <h1>{{item.name}}</h1>
+            <p>{{item.description}}</p>
+      </ion-slide>
+    </ion-slides>
+  </ion-content>
+</div>

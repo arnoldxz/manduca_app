@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-categories',
@@ -6,11 +6,20 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent implements OnInit {
+
+  activeButton!: string;
+
   items: string[] = [];
 
   @Input() categories: string[] = [];
+  @Output() categorySelectedEvent = new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit() { }
 
+  buttonClicked(category: string) {
+    this.activeButton = category;
+    this.categorySelectedEvent.emit(category);
+  }
 }

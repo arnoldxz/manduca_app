@@ -1,6 +1,9 @@
 <ion-list>
-  <ion-item *ngFor="let item of products">
-    <app-scroller-item [product]="item"></app-scroller-item>
+  <ion-item *ngFor="let product of products">
+    <app-scroller-item 
+    [product]="product" 
+    (click)='itemClick(product)'
+  ></app-scroller-item>
   </ion-item>
 </ion-list>
 

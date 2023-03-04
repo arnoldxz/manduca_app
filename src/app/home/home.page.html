@@ -1,6 +1,24 @@
-<app-header [title]="title"></app-header>
+<app-header [title]="title" ></app-header>
 <ion-content [fullscreen]="true">
   <app-slider [products]="this.productsProvider.getRecommended()"></app-slider>
-  <app-categories [categories]="this.productsProvider.getCategories()"></app-categories>
-  <app-scroller [products] = "this.productsProvider.getProducts()"></app-scroller>
+  
+  <app-categories 
+    [categories]="this.productsProvider.getCategories()"
+    (categorySelectedEvent)="onCategorySelectedEvent($event)"
+  ></app-categories>
+
+  <app-scroller 
+    [products]= "this.products"
+    (productSelectedEvent)="onProductSelectedEvent($event)"
+  ></app-scroller>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="onCheckout()">
+        <ion-icon name="cart"></ion-icon>
+        <ion-badge>{{this.orderHandlerService.getTotalProductQuantity()}}</ion-badge>
+    </ion-fab-button>
+  </ion-fab>
+  <!-- <app-check-out-button
+    (onClickEvent)="onCheckout()"
+  ></app-check-out-button> -->
 </ion-content>

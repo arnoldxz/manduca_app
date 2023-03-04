@@ -10,6 +10,11 @@ import { ScrollerComponent } from '../components/scroller/scroller.component';
 import { ScrollerItemComponent } from '../components/scroller-item/scroller-item.component';
 import { CategoriesComponent } from '../components/categories/categories.component';
 import { HeaderComponent } from '../components/header/header.component';
+import { QuantitySelectorComponent } from '../components/quantity-selector/quantity-selector.component';
+import { CheckOutComponent } from '../components/check-out/check-out.component';
+import { ItemDetailsComponent } from '../components/item-details/item-details.component';
+import { CheckOutButtonComponent } from '../components/check-out-button/check-out-button.component';
+import { CheckOutListComponent } from '../components/check-out-list/check-out-list.component';
 
 
 @NgModule({
@@ -17,13 +22,19 @@ import { HeaderComponent } from '../components/header/header.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
   ],
   declarations: [HomePage, 
     SliderComponent, 
     ScrollerComponent, 
     ScrollerItemComponent, 
     CategoriesComponent, 
-    HeaderComponent]
+    HeaderComponent,
+    ItemDetailsComponent,
+    QuantitySelectorComponent,
+    CheckOutComponent,
+    CheckOutButtonComponent,
+    CheckOutListComponent
+  ]
 })
 export class HomePageModule {}
