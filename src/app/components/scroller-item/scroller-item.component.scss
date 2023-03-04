@@ -1,18 +1,32 @@
 img {
 
     border-radius: 10px;
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    height: 100%;
     margin-left: 0%;
 }
 
 .thumb {
-    margin: 5%;
+    margin: 3%;
     margin-left: 0%;
-    width: 10rem;
+    width: 11rem;
     height: 10rem;
     
     
+}
+
+h2{
+    font-family: "fredo";
+}
+
+p {
+    font-family: "fredo";
+    display: block;
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 25ch;
 }
 
 .price {
@@ -23,9 +37,11 @@ img {
 }
 
 ion-item {
-    
-    
-    width: 125%
+    width: 110%;
+}
+
+ion-label {
+    margin-left: 5%;
 }
 
 
