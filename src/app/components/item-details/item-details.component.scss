@@ -28,12 +28,11 @@ ion-content {
   .product-image {
     position: absolute;
     top: 1.5%;
-    height: 50%;
+    height: 40%;
     width: 95%;
-    //margin: 1rem auto;
     overflow: hidden;
-    border-radius: 20px; /* Añade puntas curvadas /
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); / Agrega un borde con sombra /
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   }
 
   .product-image ion-img {
@@ -43,13 +42,13 @@ ion-content {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 20px; / Aplica puntas curvadas a la imagen */
   }
 
   .product-description {
     color: #636363;
     position: absolute;
-    bottom: 35%;
+    bottom: 45%;
+    left: 10%;
     max-width: 90%;
     text-align: justify;
     margin-bottom: 1rem;
