@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="cancel()" color="danger">Cancel</ion-button>
+      <ion-button (click)="cancel()" color="danger">ATRÁS<ion-icon slot="start" name="arrow-back-outline"></ion-icon></ion-button>
     </ion-buttons>
-    <ion-title>Checkout</ion-title>
+    <ion-title>Mi Carrito</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="confirm()" color="primary" [strong]="true">Payment</ion-button>
+      <ion-button (click)="confirm()" color="primary" [strong]="true">PAGAR<ion-icon slot="end" name="card-outline"></ion-icon></ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -20,18 +20,17 @@
         </ion-thumbnail>
         <ion-label>
           <h2>{{ item.product.name }}</h2>
-          <p>Quantity: {{ item.quantity }}</p>
           <p class="price">{{ item.totalPrice }}€</p>
-          <app-quantity-selector [(quantity)]="item.quantity"></app-quantity-selector>
         </ion-label> 
-        <!-- <ion-icon slot="end" color="danger" name="trash" (click)="removeOrderItem(item, item.quantity > 1)"></ion-icon> -->
+          <app-quantity-selector [(quantity)]="item.quantity"></app-quantity-selector>
+        <ion-icon class="trash" slot="end" color="danger" name="trash" (click)="removeOrderItem(item)"></ion-icon>
       </ion-item>
     </ion-item-sliding>
   </ion-list>
-  <div class="no-products" *ngIf="items.length == 0"><p>No products</p></div>
+  <div class="no-products" *ngIf="items.length == 0"><p>Sin productos</p></div>
 </ion-content>
 <ion-footer>
   <ion-toolbar>
-    <ion-title class="price">Total Price: {{ orderHandlerService.order.totalPrice }}€</ion-title>
+    <ion-title class="price">Precio Total: {{ orderHandlerService.order.totalPrice }}€</ion-title>
   </ion-toolbar>
 </ion-footer>

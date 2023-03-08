@@ -1,5 +1,16 @@
-.cart {
-    float: right;
-    margin-right: 2%;
+@import "../../../theme/fonts.scss";
+
+ion-header{
+    float: left;
+    
 }
 
+ion-toolbar {
+    box-shadow: 0px 4px 10px rgba;
+}  
+
+h4 {
+    margin-left: 3%;
+    text-align: left;
+    font-family: $primary-font;
+}

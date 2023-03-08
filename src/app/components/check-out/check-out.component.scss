@@ -1,23 +1,62 @@
-ion-toolbar {
-    ion-title {
-      text-align: center;
-    }
+@import "../../../theme/fonts.scss";
+
+ion-header {
+  
+  ion-title {
+    font-family: $primary-font;
   }
 
-  ion-icon[name="trash"] {
-    color: red;
+  ion-button {
+    font-family: $primary-font;
   }
-  
-  .no-products {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+}
+
+ion-toolbar {
+  ion-title {
+    text-align: center;
   }
+}
+
+ion-icon[name="trash"] {
+  color: red;
+}
+
+h2 {
+  font-family: $primary-font;
+}
   
-  .price {
-    font-weight: bold;
-    color: green;
-  }
+.no-products {
+  font-family: $primary-font;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
   
+.price {
+  font-family: $primary-font;
+  font-weight: bold;
+  color: green;
+}
   
+app-quantity-selector {
+  font-family: $primary-font;
+  position: absolute;
+  left: 30%;
+  transform: scale(0.6);
+}
+
+@keyframes highlight {
+  from { color: inherit; background-color: inherit; }
+  to { color: white; background-color: rgb(255, 169, 169); }
+}
+  
+.trash {
+  transform: scale(0.9);
+  transition: all 0.2s ease-out;
+}
+
+ion-icon[name="trash"]:active {
+  animation: highlight 0.3s ease-out;
+  border-radius: 20%;
+}

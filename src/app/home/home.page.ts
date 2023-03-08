@@ -22,7 +22,7 @@ import { OrderHandlerService } from '../services/order-handler/order-handler.ser
 })
 export class HomePage implements OnInit {
 
-    title: string = 'Restaurant';
+    title: string = 'RESTAURANT';
     productsProvider: ProductsProviderService = {} as ProductsProviderService;
     products: Product[] = [];
 

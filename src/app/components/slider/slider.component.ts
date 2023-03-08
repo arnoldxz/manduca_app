@@ -8,10 +8,6 @@ import { Product } from 'src/app/models/Product';
   template: `
     <ion-slides [pager]="true" class="slider" #slider (ionSlideDidChange)="onSlideDidChange()">
       <ion-slide *ngFor="let item of products" class="slide" style.background-image="url('{{item.image}}')">
-          <div class = "box">
-            <h1>{{item.name}}</h1>
-            <p>{{item.description}}</p>
-          </div>
       </ion-slide>
     </ion-slides>
   `,
