@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CheckoutService } from '../api/checkout/checkout.service';
-import { ProductsProviderService } from '../api/products-provider.service';
+import { ProductsProviderService } from '../api/products/products-provider.service';
 import { CheckOutComponent } from '../components/check-out/check-out.component';
 import { ItemDetailsComponent } from '../components/item-details/item-details.component';
 import { Product } from '../models/Product';
@@ -33,7 +33,7 @@ export class HomePage implements OnInit {
         this.productsProvider = productsProviderService;
     }
     ngOnInit(): void {
-        this.products = this.productsProvider.getProducts();
+        this.productsProvider.getProducts().subscribe(data => this.products = data);
     }
 
     onCategorySelectedEvent = (category: string) => 
