@@ -46,6 +46,8 @@ export class OrderHandlerService {
     getItemsLength = (): number => this.order.items.length || 0;
 
     getTotalProductQuantity = (): number => this.order.totalQuantity;
+
+    
     
 }
 

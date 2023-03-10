@@ -30,4 +30,5 @@ export class HttpService {
   
   post = <TResponse>(endpoint: string, body?: any): Observable<TResponse> => 
     this.http.post<TResponse>(`${this.URL}${endpoint}`, body, { headers: this.headers });
+  
 }

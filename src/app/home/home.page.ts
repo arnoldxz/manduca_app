@@ -64,8 +64,11 @@ export class HomePage implements OnInit {
         await modal.present();
         modal.onDidDismiss().then((data: any) => {
             if(data.role === 'confirm') {
-                // this.checkOutService.checkout(this.orderHandlerService.order);
-                console.log('Order confirmed');
+                this.checkOutService.checkout(this.orderHandlerService.order).subscribe(
+                    res => console.log(res),
+                    err => console.log(err),
+                    () => console.log('Checkout completed')
+                );
             }
         });
     }
