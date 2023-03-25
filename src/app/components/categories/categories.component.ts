@@ -1,25 +1,38 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+export type CategoryViewModel = {
+  category: string;
+  selected: boolean;
+}
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss'],
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent {
 
-  activeButton!: string;
+  items: CategoryViewModel[] = [];
 
-  items: string[] = [];
+  @Input()
+  public set categories(value: string[]) {
+    this.items = value.map(category => ({ category, selected: false }));
+  }
 
-  @Input() categories: string[] = [];
-  @Output() categorySelectedEvent = new EventEmitter<string>();
+  @Output()
+  private categorySelected = new EventEmitter<string | null>();
 
-  constructor() { }
+  public toggleCategory = (item: CategoryViewModel) => {
+    const { selected: wasSelected } = item;
+    this.items.forEach(x => x.selected = false);
 
-  ngOnInit() { }
+    if (wasSelected) {
+      // Notify no category filter
+      this.categorySelected.next(null);
+      return;
+    }
 
-  buttonClicked(category: string) {
-    this.activeButton = category;
-    this.categorySelectedEvent.emit(category);
+    item.selected = true;
+    this.categorySelected.next(item.category);
   }
 }

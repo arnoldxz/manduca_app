@@ -8,13 +8,13 @@ import { Product } from 'src/app/models/Product';
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.scss'],
 })
-export class ItemDetailsComponent implements OnInit{
+export class ItemDetailsComponent implements OnInit {
 
-  @Input() item: Item = {} as Item;
+  @Input() item!: Item;
   // @Output() itemChange = new EventEmitter<Item>();
 
   constructor(private modalCtrl: ModalController) { }
-  
+
   ngOnInit(): void {
     console.log("ItemDetailsComponent");
     console.log(this.item);
@@ -22,6 +22,6 @@ export class ItemDetailsComponent implements OnInit{
 
   cancel = () => this.modalCtrl.dismiss(this.item, 'cancel');
   confirm = () => this.modalCtrl.dismiss(this.item, 'confirm');
-  
+
 
 }

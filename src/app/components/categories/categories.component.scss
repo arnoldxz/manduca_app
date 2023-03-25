@@ -1,19 +1,4 @@
+
 .container {
-        display: flex;
-        flex-direction: row;
-        overflow: scroll;
-        background-color: white;
-}
-
-.categories{
-        color:black;
-        
-}
-
-.container::-webkit-scrollbar {
-        background-color: transparent; /* Fondo transparente */
-}
-      
-.active {
-        background-color: #cfcdcd;
+  display: flex;
 }

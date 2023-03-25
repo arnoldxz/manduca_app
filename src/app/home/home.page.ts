@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { CheckoutService } from '../api/checkout/checkout.service';
-import { ProductsProviderService } from '../api/products/products-provider.service';
+import { ProductsProvider } from '../api/products/products-provider.service';
+import { sswitch } from '../common/rx-operators';
 import { CheckOutComponent } from '../components/check-out/check-out.component';
 import { ItemDetailsComponent } from '../components/item-details/item-details.component';
+import { IItem } from '../models/Order';
 import { Product } from '../models/Product';
 import { OrderHandlerService } from '../services/order-handler/order-handler.service';
 
@@ -20,54 +23,79 @@ import { OrderHandlerService } from '../services/order-handler/order-handler.ser
     // `,
     styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage {
 
     title: string = 'Restaurant';
-    productsProvider: ProductsProviderService = {} as ProductsProviderService;
-    products: Product[] = [];
 
-    constructor(productsProviderService: ProductsProviderService,
-        public orderHandlerService: OrderHandlerService,
-        private checkOutService: CheckoutService,
-        private modalController: ModalController) {
-        this.productsProvider = productsProviderService;
+    public products$: Observable<Product[]>;
+    public categories$: Observable<string[]>;
+    public recomendedProducts$: Observable<Product[]>;
+    public categoryFilter$: BehaviorSubject<string | null>;
+
+    constructor(
+      productsProvider: ProductsProvider,
+      public orderHandlerService: OrderHandlerService,
+      private checkoutService: CheckoutService,
+      private modalController: ModalController
+    ) {
+      this.categoryFilter$ = new BehaviorSubject<string | null>(null);
+      const products$ = productsProvider.getProducts();
+
+      this.products$ = this.categoryFilter$.pipe(
+        sswitch(
+          filterTerm => !!filterTerm,
+          // If category filter term is not null, returns products filtered by category
+          filterTerm => products$.pipe(
+            map(x => x.filter(({ category }) => filterTerm === category))
+          ),
+          // Else, return the entire products collection.
+          _ => products$
+        )
+      );
+
+      this.categories$ = products$.pipe(
+        map(x => x.map(({ category }) => category).distinct())
+      );
+
+      this.recomendedProducts$ = products$.pipe(
+        map(x => x.filter(({ isRecomended }) => isRecomended))
+      );
     }
-    ngOnInit(): void {
-        this.productsProvider.getProducts().subscribe(data => this.products = data);
-    }
 
-    onCategorySelectedEvent = (category: string) => 
-        this.products = this.productsProvider.getProductsByCategory(category);
-
-    onProductSelectedEvent = async (product: Product) => {
+    onProductSelected = async (product: Product) => {
         const item = this.orderHandlerService.getOrCreateOrderItem(product);
         const modal = await this.modalController.create({
             component: ItemDetailsComponent,
-            componentProps: { item: item }
+            componentProps: { item }
         });
-        
+
         await modal.present();
-        modal.onDidDismiss().then(data => {
-            (data.role === 'confirm' && this.orderHandlerService.addOrUpdateItem(data.data)) 
-            || (data.role === 'cancel' && this.orderHandlerService.removeOrderItem(data.data))
-            ||(item.quantity === 0) && this.orderHandlerService.removeOrderItem(data.data);
-        });
+        const { data, role } = await modal.onDidDismiss<IItem>();
+
+        // Revisit condition when OrderHandlerService is refactored
+        // to avoid instance bounding.
+        // 'cancel' should actually cancel the operation, instead of assuming
+        // that the item must be removed from the order.
+        if (role === 'cancel' || !data?.quantity) {
+          this.orderHandlerService.removeOrderItem(data!);
+        }
+
+        // Also, investigate further how to infer model 'role' types:
+        // type ItemDetailsComponentResultRole = 'confirm' | 'cancel';
     };
 
     onCheckout = async () => {
-        // console.log('Order: ', this.orderHandlerService.order);
-        
         const modal = await this.modalController.create({
             component: CheckOutComponent,
             componentProps: { orderHandlerService: this.orderHandlerService }
         });
+
         await modal.present();
-        modal.onDidDismiss().then((data: any) => {
-            if(data.role === 'confirm') {
-                // this.checkOutService.checkout(this.orderHandlerService.order);
-                console.log('Order confirmed');
-            }
-        });
+
+        const { role } = await modal.onDidDismiss();
+        if (role === 'confirm') {
+          console.log('Order confirmed');
+        }
     }
 
 }

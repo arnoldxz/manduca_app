@@ -14,7 +14,7 @@ export interface IItem {
 
 export class Order implements IOrder {
     private _items: Item[] = [];
-    
+
     constructor(items: Item[]) {
         this._items = items;
     }
@@ -26,7 +26,7 @@ export class Order implements IOrder {
     set items(value: Item[]) {
         this._items = value;
     }
-  
+
     get totalQuantity(): number {
         return this._items.reduce((agg, item) => agg + item.quantity, 0);
     }
@@ -44,8 +44,7 @@ export class Item implements IItem {
 
     constructor(product: Product, quantity: number) {
         this._product = product;
-        this._quantity = quantity;
-        this._totalPrice = product.price * quantity;
+        this.quantity = quantity;
     }
 
     get product(): Product {
@@ -56,12 +55,12 @@ export class Item implements IItem {
         return this._totalPrice;
     }
 
+    get quantity(): number {
+        return this._quantity;
+    }
+
     set quantity(value: number) {
         this._quantity = value;
         this._totalPrice = this._product.price * value;
-    }
-    
-    get quantity(): number {
-        return this._quantity;
     }
 }

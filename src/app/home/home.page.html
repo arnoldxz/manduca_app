@@ -1,24 +1,25 @@
-<app-header [title]="title" ></app-header>
-<ion-content [fullscreen]="true">
-  <app-slider [products]="this.productsProvider.getRecommended()"></app-slider>
-  
-  <app-categories 
-    [categories]="this.productsProvider.getCategories()"
-    (categorySelectedEvent)="onCategorySelectedEvent($event)"
-  ></app-categories>
 
-  <app-scroller 
-    [products]= "this.products"
-    (productSelectedEvent)="onProductSelectedEvent($event)"
+<app-header [title]="title"></app-header>
+
+<app-slider [products]="(recomendedProducts$ | async) ?? []"></app-slider>
+
+<app-categories
+  [categories]="(categories$ | async) ?? []"
+  (categorySelected)="categoryFilter$.next($event)"
+></app-categories>
+
+<ion-content>
+  <app-scroller
+    [products]="(products$ | async) ?? []"
+    (productSelectedEvent)="onProductSelected($event)"
   ></app-scroller>
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="onCheckout()">
-        <ion-icon name="cart"></ion-icon>
-        <ion-badge>{{this.orderHandlerService.getTotalProductQuantity()}}</ion-badge>
-    </ion-fab-button>
-  </ion-fab>
-  <!-- <app-check-out-button
-    (onClickEvent)="onCheckout()"
-  ></app-check-out-button> -->
 </ion-content>
+
+<!-- Make this a component that depends on the OrderHandlerService -->
+<!-- and emits an 'onCheckout' event -->
+<ion-fab vertical="bottom" horizontal="end" style="transform: translateX(-30%);">
+  <ion-fab-button (click)="onCheckout()">
+      <ion-icon name="cart"></ion-icon>
+      <ion-badge>{{this.orderHandlerService.getTotalProductQuantity()}}</ion-badge>
+  </ion-fab-button>
+</ion-fab>

@@ -1,3 +1,10 @@
 <div class="container">
-  <ion-button class="categories" fill="clear" *ngFor="let item of categories" size="small" [ngClass]="{'active': activeButton === item}" (click)="buttonClicked(item)">{{item}}</ion-button>
+  <ion-chip
+    class="category"
+    *ngFor="let item of items"
+    (click)="toggleCategory(item)"
+    [color]="item.selected ? 'primary' : 'default'"
+  >
+    {{ item.category }}
+  </ion-chip>
 </div>
