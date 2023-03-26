@@ -12,26 +12,36 @@
 <!-- <app-check-out-list [items]="items()"></app-check-out-list> -->
 
 <ion-content>
-  <ion-list *ngIf="orderHandlerService.getTotalProductQuantity() > 0">
+  <ion-list *ngIf="items.length; else noItems">
     <ion-item-sliding *ngFor="let item of items">
       <ion-item>
         <ion-thumbnail slot="start">
           <ion-img [src]="item.product.image"></ion-img>
         </ion-thumbnail>
+
         <ion-label>
           <h2>{{ item.product.name }}</h2>
           <p>Quantity: {{ item.quantity }}</p>
           <p class="price">{{ item.totalPrice }}€</p>
           <app-quantity-selector [(quantity)]="item.quantity"></app-quantity-selector>
-        </ion-label> 
+        </ion-label>
+
+        <!-- Check what if quantity is set to 0 (?) -->
+        <!-- Sug.: constrain quantity selector range [1, n], and add a button to remove items (like above) -->
         <!-- <ion-icon slot="end" color="danger" name="trash" (click)="removeOrderItem(item, item.quantity > 1)"></ion-icon> -->
       </ion-item>
     </ion-item-sliding>
   </ion-list>
-  <div class="no-products" *ngIf="items.length == 0"><p>No products</p></div>
+
+  <ng-template #noItems>
+    <div class="no-products">
+      <p>No products</p>
+    </div>
+  </ng-template>
+
 </ion-content>
 <ion-footer>
   <ion-toolbar>
-    <ion-title class="price">Total Price: {{ orderHandlerService.order.totalPrice }}€</ion-title>
+    <ion-title class="price">Total Price: {{ totalPrice }}€</ion-title>
   </ion-toolbar>
 </ion-footer>

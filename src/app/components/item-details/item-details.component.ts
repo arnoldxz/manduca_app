@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Item } from 'src/app/models/Order';
 import { Product } from 'src/app/models/Product';
+import { OrderHandlerService } from 'src/app/services/order-handler/order-handler.service';
 
 @Component({
   selector: 'app-item-details',
@@ -10,18 +11,19 @@ import { Product } from 'src/app/models/Product';
 })
 export class ItemDetailsComponent implements OnInit {
 
-  @Input() item!: Item;
-  // @Output() itemChange = new EventEmitter<Item>();
+  @Input() product!: Product;
+  public item!: Item;
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(
+    private modalCtrl: ModalController,
+    private orderHandler: OrderHandlerService
+  ) { }
 
   ngOnInit(): void {
-    console.log("ItemDetailsComponent");
-    console.log(this.item);
+    const orderItem = this.orderHandler.items.find(({ product }) => this.product.id === product.id);
+    this.item = orderItem ?? new Item(this.product, 1);
   }
 
-  cancel = () => this.modalCtrl.dismiss(this.item, 'cancel');
+  cancel = () => this.modalCtrl.dismiss(null, 'cancel');
   confirm = () => this.modalCtrl.dismiss(this.item, 'confirm');
-
-
 }

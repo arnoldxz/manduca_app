@@ -1,5 +1,5 @@
 <div class="content">
-  <ion-fab-button (click)="subtraction()" size="small">
+  <ion-fab-button (click)="subtraction()" size="small" [disabled]="!quantity">
     <ion-icon name="remove-outline"></ion-icon>
   </ion-fab-button>
   <p>{{quantity}}</p>

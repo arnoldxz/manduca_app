@@ -15,7 +15,7 @@ import { CheckOutComponent } from '../components/check-out/check-out.component';
 import { ItemDetailsComponent } from '../components/item-details/item-details.component';
 import { CheckOutButtonComponent } from '../components/check-out-button/check-out-button.component';
 import { CheckOutListComponent } from '../components/check-out-list/check-out-list.component';
-
+import { CartComponent } from '../components/cart/cart.component';
 
 @NgModule({
   imports: [
@@ -24,17 +24,18 @@ import { CheckOutListComponent } from '../components/check-out-list/check-out-li
     IonicModule,
     HomePageRoutingModule,
   ],
-  declarations: [HomePage, 
-    SliderComponent, 
-    ScrollerComponent, 
-    ScrollerItemComponent, 
-    CategoriesComponent, 
+  declarations: [HomePage,
+    SliderComponent,
+    ScrollerComponent,
+    ScrollerItemComponent,
+    CategoriesComponent,
     HeaderComponent,
     ItemDetailsComponent,
     QuantitySelectorComponent,
     CheckOutComponent,
     CheckOutButtonComponent,
-    CheckOutListComponent
+    CheckOutListComponent,
+    CartComponent
   ]
 })
 export class HomePageModule {}

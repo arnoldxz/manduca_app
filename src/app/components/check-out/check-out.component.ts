@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalController, AlertController } from '@ionic/angular';
-import { IOrder, IItem, Item } from 'src/app/models/Order';
+import { Item } from 'src/app/models/Order';
 import { OrderHandlerService } from 'src/app/services/order-handler/order-handler.service';
 
 @Component({
@@ -8,21 +8,23 @@ import { OrderHandlerService } from 'src/app/services/order-handler/order-handle
   templateUrl: './check-out.component.html',
   styleUrls: ['./check-out.component.scss'],
 })
-export class CheckOutComponent implements OnInit {
+export class CheckOutComponent {
 
-  @Input() orderHandlerService: OrderHandlerService = {} as OrderHandlerService;
+  public items: ReadonlyArray<Item>;
 
-  constructor(private modalCtrl: ModalController, 
-              private alertController: AlertController) {}
-
-  items: Item[] = [];
-
-  ngOnInit() {
-    this.items = this.orderHandlerService.getItems()
-    this.orderHandlerService.order.totalPrice
+  constructor(
+    private modalCtrl: ModalController,
+    private alertController: AlertController,
+    { items }: OrderHandlerService,
+  ) {
+    this.items = items;
   }
 
-  async removeOrderItem(item: IItem, showAlert: boolean) {
+  public get totalPrice() {
+    return this.items.reduce((acc, {product: {price}, quantity}) => acc + price * quantity, 0);
+  }
+
+  async removeOrderItem(item: Item, showAlert: boolean) {
     // if (showAlert && item.quantity > 1) {
     //   const alert = await this.alertController.create({
     //     header: `Remove ${item.product.name}`,
@@ -58,7 +60,7 @@ export class CheckOutComponent implements OnInit {
     //       }
     //     ]
     //   });
-  
+
     //   await alert.present();
     // } else {
     //   this.orderHandlerService.removeOrderItem(item);

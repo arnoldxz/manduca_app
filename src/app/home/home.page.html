@@ -15,11 +15,4 @@
   ></app-scroller>
 </ion-content>
 
-<!-- Make this a component that depends on the OrderHandlerService -->
-<!-- and emits an 'onCheckout' event -->
-<ion-fab vertical="bottom" horizontal="end" style="transform: translateX(-30%);">
-  <ion-fab-button (click)="onCheckout()">
-      <ion-icon name="cart"></ion-icon>
-      <ion-badge>{{this.orderHandlerService.getTotalProductQuantity()}}</ion-badge>
-  </ion-fab-button>
-</ion-fab>
+<app-cart (click)="onCheckout()"></app-cart>
